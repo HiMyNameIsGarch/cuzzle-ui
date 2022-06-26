@@ -2,6 +2,7 @@
     <div class="home">
         <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
         <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/> -->
+        <h1>{{ $store.state.counter.count }}</h1>
         <h2>This is your data from database: "{{ puzzle_name }}"</h2>
     </div>
 </template>
