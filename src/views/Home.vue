@@ -1,9 +1,6 @@
 <template>
     <div class="home">
-        <!-- <h1 class="bg-blue-500 text-3xl font-bold underline"> -->
-        <!--     {{ $store.state.counter.count }} -->
-        <!-- </h1> -->
-        <div class="bg-blue-500 h-80 flex align-middle justify-center">
+        <div class="bg-red-500 h-80 flex align-middle justify-center">
             <h1 class="text-6xl font-bold">Welcome to Cuzzle</h1>
         </div>
     </div>

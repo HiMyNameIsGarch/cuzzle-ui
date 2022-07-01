@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import { CounterRoutes } from './modules/counter/routes';
+import { AuthRoutes } from './modules/auth/router';
 import Home from './views/Home.vue';
 
 const routes: Array<RouteRecordRaw> = [
@@ -18,6 +19,7 @@ const routes: Array<RouteRecordRaw> = [
             import(/* webpackChunkName: "about" */ './views/About.vue'),
     },
     ...CounterRoutes,
+    ...AuthRoutes,
 ];
 
 const router = createRouter({
