@@ -1,7 +1,7 @@
 <template>
     <Hero
         title="Register"
-        desc="Are you ready to enter in the most exiting community?"
+        desc="Are you ready to enter in the most exiting community of puzzle solvers?"
     />
 
     <div class="grid grid-cols-10 gap-4 bg-gray-300">

@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import { DefaultState, IState } from './state';
 import merge from 'deepmerge';
 import { CounterModule } from './modules/counter/module';
+import { AuthModule } from './modules/auth/module';
 
 const state: IState = DefaultState;
 
@@ -35,5 +36,6 @@ export const registerModule = (
     }
 };
 
-// registe modules
+// register modules
 registerModule('counter', CounterModule);
+registerModule('auth', AuthModule);
