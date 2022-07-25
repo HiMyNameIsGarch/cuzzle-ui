@@ -20,44 +20,22 @@
     </div>
 </template>
 
-<script lang="ts">
-import { mapActions } from 'vuex';
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import Input from '@/components/Input.vue';
 import Btn from '@/components/SubmitBtn.vue';
 import Hero from '@/components/Hero.vue';
-import { IAuthActions } from '@/modules/auth/actions';
+import { useAuthStore } from '@/stores/auth/index';
+import { ref } from 'vue';
 
-interface ILoginData {
-    email: string;
-    password: string;
-}
+const store = useAuthStore();
+const { logIn } = store;
 
-export default defineComponent<ILoginData, IAuthActions>({
-    components: {
-        Input,
-        Btn,
-        Hero,
-    },
-    methods: {
-        ...mapActions('auth', [
-            'createToken',
-            'revokeToken',
-            'logOut',
-            'logIn',
-        ]),
-        login() {
-            console.log(this.email);
-            console.log(this.password);
-            this.email = '';
-            this.password = '';
-        },
-    },
-    data() {
-        return {
-            email: '',
-            password: '',
-        };
-    },
-});
+const email = ref('');
+const password = ref('');
+
+const login = () => {
+    console.log('call create token');
+    console.log(email.value, password.value);
+    logIn();
+};
 </script>

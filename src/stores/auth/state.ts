@@ -1,3 +1,5 @@
+import { defineStore } from 'pinia';
+
 export interface IAuthState {
     accessToken: string;
     refreshToken: string;
@@ -11,3 +13,13 @@ export const AuthDefaultState = (): IAuthState => {
         id: '',
     };
 };
+
+export const useState = defineStore({
+    id: 'auth.state',
+
+    state: (): IAuthState => {
+        return {
+            ...AuthDefaultState(),
+        };
+    },
+});

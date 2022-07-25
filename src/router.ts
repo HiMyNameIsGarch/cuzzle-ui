@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import { CounterRoutes } from './views/counter/routes';
-import { AuthRoutes } from './modules/auth/router';
+import { AuthRoutes } from './views/auth/router';
 import Home from './views/Home.vue';
 
 const routes: Array<RouteRecordRaw> = [

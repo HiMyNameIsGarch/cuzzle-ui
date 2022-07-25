@@ -21,34 +21,26 @@
     </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import Input from '@/components/Input.vue';
 import Btn from '@/components/SubmitBtn.vue';
 import Hero from '@/components/Hero.vue';
+import { useAuthStore } from '@/stores/auth/index';
+import { ref } from 'vue';
 
-export default defineComponent({
-    components: {
-        Input,
-        Btn,
-        Hero,
-    },
-    methods: {
-        register() {
-            console.log(this.username);
-            console.log(this.email);
-            console.log(this.password);
-            this.email = '';
-            this.password = '';
-            this.username = '';
-        },
-    },
-    data() {
-        return {
-            email: '',
-            password: '',
-            username: '',
-        };
-    },
-});
+const store = useAuthStore();
+const { createToken } = store;
+
+const username = ref('');
+const email = ref('');
+const password = ref('');
+
+const register = () => {
+    console.log('call register user');
+    createToken({
+        username: username.value,
+        email: email.value,
+        password: password.value,
+    });
+};
 </script>
