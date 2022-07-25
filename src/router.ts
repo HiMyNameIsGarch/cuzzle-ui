@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import { CounterRoutes } from './modules/counter/routes';
+import { CounterRoutes } from './views/counter/routes';
 import { AuthRoutes } from './modules/auth/router';
 import Home from './views/Home.vue';
 
