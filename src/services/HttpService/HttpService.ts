@@ -1,10 +1,9 @@
-import { IState } from '@/state';
 import axios, { AxiosInstance } from 'axios';
+import { Pinia } from 'pinia';
 import { Router } from 'vue-router';
-import { Store } from 'vuex';
 
 export interface IHttpService extends AxiosInstance {
-    store?: Store<IState>;
+    store?: Pinia;
     router?: Router;
 }
 
@@ -12,7 +11,7 @@ export let HttpService: IHttpService = axios.create();
 
 const apiUrl = 'https://localhost:7120/api';
 
-export const initHttpService = (store?: Store<IState>, router?: Router) => {
+export const initHttpService = (store?: Pinia, router?: Router) => {
     HttpService = axios.create({
         baseURL: apiUrl,
     });
