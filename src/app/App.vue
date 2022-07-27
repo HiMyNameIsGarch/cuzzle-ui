@@ -24,7 +24,7 @@
                 <div
                     class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
                 >
-                    <div>
+                    <div v-if="!isAuthenticated">
                         <button
                             class="mr-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
                         >
@@ -38,6 +38,7 @@
                     </div>
                     <!-- Logged in  -->
                     <button
+                        v-else
                         type="button"
                         class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                     >
@@ -59,7 +60,7 @@
                             />
                         </svg>
                     </button>
-                    <div class="ml-3 relative">
+                    <div class="ml-3 relative" v-if="isAuthenticated">
                         <div>
                             <button
                                 type="button"
@@ -68,12 +69,14 @@
                                 aria-expanded="false"
                                 aria-haspopup="true"
                             >
-                                <span class="sr-only">Open user menu</span>
-                                <img
-                                    class="h-10 w-10 rounded-full"
-                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                    alt=""
-                                />
+                                <router-link to="/profile">
+                                    <span class="sr-only">Open user menu</span>
+                                    <img
+                                        class="h-10 w-10 rounded-full"
+                                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                        alt=""
+                                    />
+                                </router-link>
                             </button>
                         </div>
 
@@ -140,17 +143,15 @@
     </footer>
 </template>
 
-<script lang="ts">
-export default {
-    data() {
-        return {
-            links: [
-                { href: '/', name: 'Home' },
-                { href: '/about', name: 'About' },
-            ],
-        };
-    },
-};
+<script setup lang="ts">
+import { useAuthStore } from '@/stores/auth/index';
+import { storeToRefs } from 'pinia';
+const { isAuthenticated } = storeToRefs(useAuthStore());
+
+const links = [
+    { href: '/', name: 'Home' },
+    { href: '/about', name: 'About' },
+];
 </script>
 
 <style>

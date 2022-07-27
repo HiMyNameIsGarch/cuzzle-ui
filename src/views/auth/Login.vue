@@ -37,5 +37,6 @@ const login = () => {
     console.log('call create token');
     console.log(email.value, password.value);
     logIn();
+    store.id = 'asd';
 };
 </script>

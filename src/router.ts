@@ -2,12 +2,21 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import { CounterRoutes } from './views/counter/routes';
 import { AuthRoutes } from './views/auth/router';
 import Home from './views/Home.vue';
+import Profile from './views/Profile.vue';
 
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
         name: 'Home',
         component: Home,
+    },
+    {
+        path: '/profile',
+        name: 'Profile',
+        component: Profile,
+        meta: {
+            requiresAuth: true,
+        },
     },
     {
         path: '/about',
