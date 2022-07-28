@@ -26,17 +26,27 @@ import Btn from '@/components/SubmitBtn.vue';
 import Hero from '@/components/Hero.vue';
 import { useAuthStore } from '@/stores/auth/index';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const store = useAuthStore();
 const { logIn } = store;
 
 const email = ref('');
 const password = ref('');
 
-const login = () => {
-    console.log('call create token');
-    console.log(email.value, password.value);
-    logIn();
-    store.id = 'asd';
+const clearData = () => {
+    email.value = '';
+    password.value = '';
+};
+
+const login = async () => {
+    const tokens = await logIn({
+        email: email.value,
+        password: password.value,
+    });
+    clearData();
+    console.log('tokens: ', tokens);
+    router.push('/profile');
 };
 </script>

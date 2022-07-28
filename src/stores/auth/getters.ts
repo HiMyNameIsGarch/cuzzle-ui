@@ -11,7 +11,7 @@ export const useGetters = defineStore('auth.getters', (): IAuthGetters => {
     const state = useState();
 
     const isAuthenticated = computed((): boolean => {
-        return state.id != '';
+        return state.accessToken != '' && state.id != '';
     });
 
     const currentUser = computed((): string => {

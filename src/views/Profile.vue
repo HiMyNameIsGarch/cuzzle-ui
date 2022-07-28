@@ -6,8 +6,10 @@
     </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-
-export default defineComponent({});
+<script setup lang="ts">
+import { useAuthStore } from '@/stores/auth/index';
+const store = useAuthStore();
+const { puzzles } = store;
+const data = await puzzles();
+console.log('authorized data: ', data);
 </script>
