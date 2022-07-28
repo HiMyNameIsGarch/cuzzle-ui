@@ -8,13 +8,13 @@ import { useAuthStore } from './stores/auth/index';
 
 const pinia = createPinia();
 
-initHttpService(pinia, router);
-
 const app = createApp(App);
 
 app.use(pinia);
 
 const auth = useAuthStore();
+
+initHttpService(auth, router);
 
 router.beforeEach((to, _from, next) => {
     console.log('auth status:', auth.isAuthenticated);

@@ -1,20 +1,29 @@
+import { IAuthState } from '@/stores/auth/state';
 import axios, { AxiosInstance } from 'axios';
-import { Pinia } from 'pinia';
 import { Router } from 'vue-router';
+import { setupRequestInterceptor } from './setupRequestInterceptor';
 
 export interface IHttpService extends AxiosInstance {
-    store?: Pinia;
+    auth?: IAuthState;
     router?: Router;
 }
 
 export let HttpService: IHttpService = axios.create();
 
-const apiUrl = 'https://localhost:7120/api';
+const API_URL = 'https://localhost:7120/api';
 
-export const initHttpService = (store?: Pinia, router?: Router) => {
+const commonHeaders = {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+};
+
+export const initHttpService = (auth?: IAuthState, router?: Router) => {
     HttpService = axios.create({
-        baseURL: apiUrl,
+        baseURL: API_URL,
     });
-    HttpService.store = store;
+    HttpService.defaults.headers.common = commonHeaders;
+    HttpService.auth = auth;
     HttpService.router = router;
+
+    setupRequestInterceptor();
 };
