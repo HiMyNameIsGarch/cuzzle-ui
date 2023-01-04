@@ -8,7 +8,7 @@
 import { HttpService } from '@/services/HttpService/HttpService';
 export default {
     async created() {
-        var { data } = await HttpService.get<any>('/puzzle');
+        const { data } = await HttpService.get<any>('/puzzle');
         console.log('data', data);
     },
 };

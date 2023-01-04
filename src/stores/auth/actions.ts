@@ -6,20 +6,11 @@ import {
     IAuthResponse,
 } from '@/services/Api/models';
 import { AuthService } from '@/services/Api/authService';
-import { HttpService } from '@/services/HttpService/HttpService';
-
-export interface IPuzzles {
-    id: string;
-    question: string;
-    name: string;
-    flag: string;
-}
 
 export interface IAuthActions {
     register(data: IAuthRegister): Promise<boolean>;
     logIn(data: IAuthLogin): Promise<IAuthResponse>;
     logOut(): Promise<any>;
-    puzzles(): Promise<Array<IPuzzles>>;
 }
 
 export const useActions = defineStore('auth.actions', (): IAuthActions => {
@@ -41,15 +32,10 @@ export const useActions = defineStore('auth.actions', (): IAuthActions => {
         state.refreshToken = '';
         state.id = '';
     }
-    async function puzzles() {
-        const data = await HttpService.get<Array<IPuzzles>>('/puzzle');
-        return data.data;
-    }
 
     return {
         register,
         logIn,
         logOut,
-        puzzles,
     };
 });
